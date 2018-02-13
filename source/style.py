@@ -18,10 +18,13 @@ class Style():
             self.checkpoints = 'check_points/multistyle-pastiche-generator-monet.ckpt'
             self.num_styles = 10
 
-    def generate_image(self, image):
+    def generate_image(self, image, output_number=6):
+
+        # The official demo said self.num_styles should not be changed. But I don't know the reason.
+
         styles = range(self.num_styles)
         random.shuffle(styles)
-        which_styles = styles[0:6]
+        which_styles = styles[0:output_number]
 
         with tf.Graph().as_default(), tf.Session() as sess:
             stylized_images = model.transform(tf.concat([image for _ in range(len(which_styles))], 0),
