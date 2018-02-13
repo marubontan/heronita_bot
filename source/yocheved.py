@@ -29,7 +29,7 @@ def handle_post(channel, img_url):
 
     # TODO: Now this doesn't use the image on memory.
     # TODO: Explore better resize.
-    img_arr = misc.imresize(misc.imread(BytesIO(res.content)), (200, 200))
+    img_arr = misc.imresize(misc.imread(BytesIO(res.content), mode='RGB'), (200, 200))
     misc.imsave('../imgs/input/temp.jpg', img_arr)
     img = np.expand_dims(image_utils.load_np_image(
         os.path.expanduser('../imgs/input/temp.jpg')), 0)
