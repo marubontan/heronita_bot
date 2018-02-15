@@ -12,8 +12,6 @@ import numpy as np
 from scipy import misc
 from style import Style
 
-# TODO: make the bot take some arguments.
-
 # TODO: set log
 config = ConfigParser.SafeConfigParser()
 config.read('./config.cfg')
@@ -57,16 +55,27 @@ def annoying_local(output):
     subprocess.call('open ../sample/sample.jpg', shell=True)
 
 
-def show_help():
-    return
+def show_help(output):
+    message = """
+    This bot needs proper arguments.
+    
+    Example:
+    @yocheved -annoy
+    
+    arguments:
+    -help You can get the help information.
+    -annoy You can annoy local machine owner.
+    -style When you post image, by this option, you can change the style of image and posts those to slack.
+    """
+
+    slack_client.api_call("chat.postMessage", channel=output['channel'], text=message, as_user=True)
 
 
 def handle_post(output, argument):
     if argument == '':
-        print()
-        show_help()
+        show_help(output)
     elif argument == '-help':
-        show_help()
+        show_help(output)
     elif argument == '-style':
         change_style(output)
     elif argument == '-annoy':
