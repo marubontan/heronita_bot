@@ -54,8 +54,7 @@ def change_style(output):
 
 def annoying_local(output):
     slack.files.upload('../sample/mig.gif', filename='mig.gif', channels=output['channel'])
-    subprocess.call('open ../sample/mig.gif', shell=True)
-
+    subprocess.call('open ../sample/sample.jpg', shell=True)
 
 
 def show_help():
@@ -82,7 +81,6 @@ def parse_slack_output(slack_output):
         output = slack_output[0]
         if 'text' in output:
             if BOT_NAME in output['text']:
-                #if 'and commented:' in output['text']:
                 argument = output['text'].split(BOT_NAME)[1].lstrip(' ')
 
                 return output, argument
