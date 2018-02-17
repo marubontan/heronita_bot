@@ -37,6 +37,7 @@ def change_style(output):
     img = np.expand_dims(image_utils.load_np_image(
         os.path.expanduser('../imgs/input/temp.jpg')), 0)
 
+    # download models
     Style.download_checkpoints('check_points')
 
     style = Style()
