@@ -48,10 +48,10 @@ class Style():
         url_prefix = 'http://download.magenta.tensorflow.org/models/'
         checkpoints = ['multistyle-pastiche-generator-monet.ckpt', 'multistyle-pastiche-generator-varied.ckpt']
         for checkpoint in checkpoints:
-            full_checkpoint = os.path.join(checkpoint_dir, checkpoint)
-            if not os.path.exists(full_checkpoint):
-                print 'Downloading', full_checkpoint
+            checkpoint_full_path = os.path.join(checkpoint_dir, checkpoint)
+            if not os.path.exists(checkpoint_full_path):
+                print 'Downloading', checkpoint_full_path
                 response = urllib2.urlopen(url_prefix + checkpoint)
-                data = response.read()
-                with open(full_checkpoint, 'wb') as fh:
-                    fh.write(data)
+                checkpoint_data = response.read()
+                with open(checkpoint_full_path, 'wb') as fh:
+                    fh.write(checkpoint_data)
